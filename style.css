@@ -1,0 +1,484 @@
+@font-face {
+    font-family: "Honey";
+    src: url("font/HoneyScript-Light.ttf");
+}
+
+@font-face {
+    font-family: "Quick";
+    src: url("font/Quicksand-Medium.ttf");
+}
+
+* {
+    font-family: "Quick";
+    font-size: 14px;
+}
+
+.bgm {
+    background-color: #0D084D;
+}
+
+.mcolor {
+    color: #0D084D;
+}
+
+.text1 {
+    font-family: "Honey";
+    font-size: 45px;
+    font-weight: 500;
+    color: #bd560c;
+}
+
+.text4 {
+    font-family: "Honey";
+    font-size: 65px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 2px;
+}
+
+.text2 {
+    font-family: "Quick";
+    font-size: 65px;
+    font-weight: 500;
+    color: white;
+}
+
+.text3 {
+    font-family: "Quick";
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.im {
+    background-image: url("img/img3.jpg");
+    height: 200px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.sec-bg {
+    /*  background-color: #eff8ff; */
+    background-color: #000066;
+}
+
+.card {
+    border-radius: 20px;
+}
+
+.img-fluid {
+    background-image: url("img/signup.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 640px;
+}
+
+.img-fluid1 {
+    background-image: url("img/signin.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 640px;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+}
+
+.logos {
+    width: 100px;
+    height: 100px;
+}
+
+.logo3 {
+    height: 200px;
+    width: 200px;
+}
+
+
+.transparent {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px 0 0 20px;
+}
+
+/* .b1:hover {
+    color: #ff0000;
+    background-color: black;
+} */
+
+.cursor {
+    cursor: pointer;
+}
+
+.tb {
+    margin-top: 100px;
+}
+
+.head {
+    font-family: ' Playpen Sans', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/*  worker main view css  */
+.bg-back {
+    background-color: #6A8595;
+}
+
+/* --------------------------------*/
+
+.white-icon {
+    color: white;
+}
+
+/* worker details css */
+
+
+.bg-black1 {
+    background-color: #97A9F9;
+
+}
+
+.btn-danger {
+    background-color: #E35D54;
+
+}
+
+.f-colour {
+    color: black;
+}
+
+
+/*------------------------------------------------*/
+
+.text-primary1 {
+    color: #82B7D0;
+
+}
+
+/*----------------- User Main view-----------------------------*/
+.sec-bg1 {
+    /* From https://css.glass */
+    background: rgba(226, 241, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(226, 241, 255, 0.41);
+}
+
+.card-background {
+    background-color: #ffffff;
+
+}
+
+.font-style {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.card {
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+
+
+/*--------------------------------------------*/
+
+
+/*----------User Profile--------------------*/
+.sec-bg2 {
+    background-color: #00001a;
+}
+
+/*-----------------------------------------*/
+
+
+
+/*-------------user order view--------------------*/
+.bgm-userOrderView {
+    /* From https://css.glass */
+    background: rgba(226, 241, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(226, 241, 255, 0.41);
+}
+
+.usertable {
+    border: 1px solid #212529;
+}
+
+.tborder {
+    border: 1px solid #212529;
+}
+
+.text-bg-warning1 {
+    background: rgb(196, 193, 25);
+    background: linear-gradient(90deg, rgb(111, 110, 19) 0%, rgb(183, 190, 44)100%);
+}
+
+.text-bg-danger1 {
+    background: rgb(128, 17, 17);
+    background: linear-gradient(90deg, rgba(128, 17, 17, 1) 0%, rgba(180, 60, 60, 1) 41%, rgba(249, 116, 116, 1) 100%);
+}
+
+.text-bg-success1 {
+    background: rgb(44, 109, 37);
+    background: linear-gradient(90deg, rgb(37, 104, 29) 0%, rgb(46, 128, 64) 57%, rgb(107, 168, 103) 100%);
+}
+
+.btn-info1 {
+    background: rgb(52, 205, 218);
+    background: linear-gradient(90deg, rgb(43, 168, 180) 0%, rgb(87, 193, 204) 43%, rgba(168, 239, 244, 1) 100%);
+}
+
+/*------------------------------------------------*/
+
+/*----------------workerOrder----------------------*/
+
+.bg-dark-search {
+    background-color: #00004d;
+}
+
+/*-------------------------------------------------*/
+
+/*-----------------workerDetails------------------*/
+
+.detailsDescription {
+
+    background: rgb(223, 239, 254);
+    background: linear-gradient(90deg, rgba(223, 239, 254, 0.571953781512605) 0%, rgba(208, 232, 255, 1) 43%, rgba(171, 215, 255, 1) 100%);
+}
+
+.des {
+    color: black;
+    font-style: bold;
+}
+
+.box {
+    background: rgb(180, 218, 253);
+    background: linear-gradient(90deg, rgba(180, 218, 253, 0.571953781512605) 0%, rgba(208, 232, 255, 1) 43%, rgba(171, 215, 255, 1) 100%);
+}
+
+.text-dark1 {
+    color: #000;
+    font-size: 15px;
+}
+
+.text-white1 {
+    color: #000;
+    font-size: 13px;
+}
+
+.buttonColour {
+    background: rgb(157, 4, 24);
+    background: linear-gradient(90deg, rgba(157, 4, 24, 1) 0%, rgba(157, 4, 24, 1) 43%, rgba(157, 4, 24, 1) 43%);
+}
+
+.buttonColour:hover {
+    background: rgb(176, 12, 34);
+    background: linear-gradient(90deg, rgba(176, 12, 34, 1) 28%, rgba(176, 12, 34, 1) 28%, rgba(176, 12, 34, 1) 28%);
+}
+
+/*------------------------------------------------*/
+
+/*--------------------------Admin--------------------------------------*/
+
+.bg-dark1 {
+
+    background-color: #00004d;
+}
+
+.text-warning1 {
+    color: #b30000;
+}
+
+.btn-secondarycate {
+    background: rgb(109, 109, 109);
+    color: white;
+}
+
+
+/*----------------------------------------------------------------------------*/
+
+
+/*---------------------------index about us-------------------------------------------------*/
+.about-1 {
+    margin: 30px;
+    padding: 5px;
+}
+
+.about-1 h1 {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+
+.about-1 p {
+    text-align: center;
+    padding: 3px;
+    color: #302e2e;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------index contact us-------------------------------------------------*/
+
+.bi20 {
+    font-size: 50px !important;
+}
+
+.bi20:hover {
+    color: #0d6efd !important;
+}
+
+.card {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.bg-primary {
+    color: white;
+    top: -142px;
+    height: 80vh;
+}
+
+.card-row {
+    position: relative;
+    top: 110px;
+}
+
+.back-container20 {
+
+    position: relative;
+    top: 100px;
+}
+
+.btn-primary20 {
+    padding: 10px;
+    width: 100px;
+    border: none;
+    background-color: white;
+    color: black;
+}
+
+.form-control {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: none;
+    border-radius: 0;
+}
+
+.text-contact {
+    font-size: 40px;
+}
+
+.border-danger {
+    border-color: aliceblue !important;
+}
+
+
+/*---------------------------index contact us-------------------------------------------------*/
+
+.btn-blue-active {
+    background-color: blue !important;
+    border-color: blue !important;
+    color: white !important;
+}
+
+.btn-clicked {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/*---------------------------index contact us-------------------------------------------------*/
+
+/*------------------------whatsapp icon-------------------------------------*/
+
+.whatsapp-icon {
+    font-size: 50px;
+    margin-left: 1420px;
+    margin-bottom: 40px;
+    color: green;
+}
+
+/*------------------------whatsapp icon-------------------------------------*/
+
+/*------------------------chat bot icon-------------------------------------*/
+
+.fixed-icon {
+    position: fixed;
+    bottom: 20px; /* Adjust the position as needed */
+    right: 20px; /* Adjust the position as needed */
+    z-index: 1000; /* Ensure it appears above other elements if necessary */
+    font-size: 40px;
+    color: #00004d;
+}
+/*------------------------chat bot icon-------------------------------------*/
+
+/*------------------------chat bot--------------------------------------*/
+
+.chat-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none; 
+    margin-bottom: 20px;
+    background-color: white;
+}
+.chat-header {
+    background-color:  #000066;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.chat-box {
+    max-height: 300px;
+    padding: 100px;
+    overflow: auto;
+}
+
+.chat-input {
+    display: flex;
+    justify-content: space-between;
+    align-items:normal;
+    border-radius: 50px;
+    padding: 10px;
+}
+.chatInput{
+    flex: 1;
+    padding: 8px;
+    border-radius: 50px;
+}
+.chatButton{
+    background-color: #000066;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+/*------------------------chat bot--------------------------------------*/
+
+

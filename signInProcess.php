@@ -7,10 +7,8 @@ $e = $_POST["e"];
 $p = $_POST["p"];
 $r = $_POST["r"];
 
-
-
-$wrs = Database::search("SELECT * FROM `worker` INNER JOIN `status` ON worker.status_s_id = status.s_id WHERE `email`='" . $e . "' AND `password`='" . $p . "' ");
-$urs = Database::search("SELECT * FROM `user` INNER JOIN `status` ON user.status_s_id = status.s_id WHERE `email`='" . $e . "' AND `password`='" . $p . "' ");
+$wrs = Database::search("SELECT * FROM `worker` INNER JOIN `status` ON worker.status_s_id = status.s_id WHERE `email`='" . $e . "'");
+$urs = Database::search("SELECT * FROM `user` INNER JOIN `status` ON user.status_s_id = status.s_id WHERE `email`='" . $e . "'");
 $wn = $wrs->num_rows;
 $un = $urs->num_rows;
 
@@ -23,52 +21,57 @@ if (empty($e)) {
 } else if (empty($p)) {
     echo ("Please Enter Your Password.");
 } else if (strlen($p) < 5 || strlen($p) > 20) {
-    echo ("Password Lenth Must be been 5 - 20 Characters.");
+    echo ("Password Length Must Be Between 5 - 20 Characters.");
 } else {
     if ($wn == "1") {
         $wdata = $wrs->fetch_assoc();
-        if ($wdata["status_s_id"] == "1") {
-            echo ("Deactivate");
-        } else if ($wdata["status_s_id"] == "3") {
-            echo ("Prohibit");
-        } else {
-            $_SESSION["u"] = $wdata;
-            if ($r == "true") {
-                setcookie("email", $e, time() + (60 * 60 * 24 * 7));
-                setcookie("password", $p, time() + (60 * 60 * 24 * 7));
+        if (password_verify($p, $wdata["password"])) {
+            if ($wdata["status_s_id"] == "1") {
+                echo ("Deactivate");
+            } else if ($wdata["status_s_id"] == "3") {
+                echo ("Prohibit");
             } else {
-                setcookie("email", "", -1);
-                setcookie("password", "", -1);
+                $_SESSION["u"] = $wdata;
+                if ($r == "true") {
+                    setcookie("email", $e, time() + (60 * 60 * 24 * 7));
+                    setcookie("password", $p, time() + (60 * 60 * 24 * 7));
+                } else {
+                    setcookie("email", "", -1);
+                    setcookie("password", "", -1);
+                }
+                echo ("w");
             }
-            echo ("w");
+        } else {
+            echo ("Invalid Email Address OR Password");
         }
     } else if ($un == "1") {
         $wdata = $urs->fetch_assoc();
-        if ($wdata["status_s_id"] == "3") {
-            echo ("Prohibit");
+        if (password_verify($p, $wdata["password"])) {
+            if ($wdata["status_s_id"] == "3") {
+                echo ("Prohibit");
+            } else {
+                $add = Database::search("SELECT * FROM `user` WHERE `email`='" . $e . "'");
+                $adData = $add->fetch_assoc();
+                if ($adData["nic"] == null) {
+                    $_SESSION["u"] = $wdata;
+                    echo ("update");
+                } else {
+                    echo ("u");
+                    $_SESSION["u"] = $wdata;
+                    if ($r == "true") {
+                        setcookie("email", $e, time() + (60 * 60 * 24 * 7));
+                        setcookie("password", $p, time() + (60 * 60 * 24 * 7));
+                    } else {
+                        setcookie("email", "", -1);
+                        setcookie("password", "", -1);
+                    }
+                }
+            }
         } else {
-
-            $add = Database::search("SELECT * FROM `user` WHERE `email`='" . $e . "' ");
-
-            $adData = $add->fetch_assoc();
-
-            if ($adData["nic"] == null) {
-                $_SESSION["u"] = $wdata;
-                echo ("update");
-            } else {
-                echo ("u");
-                
-            $_SESSION["u"] = $wdata;
-            if ($r == "true") {
-                setcookie("email", $e, time() + (60 * 60 * 24 * 7));
-                setcookie("password", $p, time() + (60 * 60 * 24 * 7));
-            } else {
-                setcookie("email", "", -1);
-                setcookie("password", "", -1);
-            }
-            }
+            echo ("Invalid Email Address OR Password");
         }
     } else {
         echo ("Invalid Email Address OR Password");
     }
 }
+?>

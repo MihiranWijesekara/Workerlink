@@ -11,7 +11,6 @@ $m = $_POST["mobile"];
 $g = $_POST["gen"];
 $accType = $_POST["at"];
 
-// set time
 $date = new DateTime();
 $tz = new DateTimeZone("Asia/Colombo");
 $date->setTimezone($tz);
@@ -39,21 +38,21 @@ if (empty($fn)) {
 } else if (empty($ps)) {
     echo ("Please Enter Your Password.");
 } else if (strlen($ps) < 5 || strlen($ps) > 20) {
-    echo ("Password Lenth Must be been 5 - 20 Characters.");
-} else if(!preg_match('/[A-Z]/', $ps)){
-    echo ("Password Must Contain At Least One Uppercase Letter.");  
-}else if (!preg_match('/[a-z]/', $ps)) {
-        echo ("Password Must Contain At Least One Lowercase Letter.");
-}else if (!preg_match('/[0-9]/', $ps)) {
-            echo ("Password Must Contain At Least One Number.");
-}else if (!preg_match('/[\W_]/', $ps)) {
-                echo ("Password Must Contain At Least One Special Character.");
+    echo ("Password Length Must Be Between 5 - 20 Characters.");
+} else if (!preg_match('/[A-Z]/', $ps)) {
+    echo ("Password Must Contain At Least One Uppercase Letter.");
+} else if (!preg_match('/[a-z]/', $ps)) {
+    echo ("Password Must Contain At Least One Lowercase Letter.");
+} else if (!preg_match('/[0-9]/', $ps)) {
+    echo ("Password Must Contain At Least One Number.");
+} else if (!preg_match('/[\W_]/', $ps)) {
+    echo ("Password Must Contain At Least One Special Character.");
 } else if (empty($rps)) {
-    echo ("Please Enter Retype Password.");
+    echo ("Please Enter Retyped Password.");
 } else if ($rps != $ps) {
-    echo ("Does Not Match Password.");
+    echo ("Passwords Do Not Match.");
 } else if (!preg_match('/^\+94[0-9]{9}$/', $m)) {
-    echo "Invalid Mobile Number. Please use the +94 format.";
+    echo ("Invalid Mobile Number. Please use the +94 format.");
 } else if ($g == "0") {
     echo ("Please Select Your Gender.");
 } else if (empty($accType)) {
@@ -65,33 +64,29 @@ if (empty($fn)) {
     } else if (!isset($_FILES["wcv"])) {
         echo ("Please Upload Your CV.");
     } else {
-        if ($wn > 0 OR $un> 0) {
+        if ($wn > 0 || $un > 0) {
             echo ("This Email OR Mobile Number Already Exists.");
         } else {
-
-            $access_fileUpload = array("application/x-zip-compressed","application/x-rar-compressed","application/zip");
-
+            $access_fileUpload = array("application/x-zip-compressed", "application/x-rar-compressed", "application/zip");
             $cv = $_FILES["wcv"];
-
             $fType = $cv["type"];
 
             if (in_array($fType, $access_fileUpload)) {
-
                 if (($cv["size"]) > (1024 * 1024)) {
-                    echo ("File Size Limit Exceeded  maximum allowed file size is 1MB.");
+                    echo ("File Size Limit Exceeded. Maximum allowed file size is 1MB.");
                 } else {
                     $newtype = "";
                     if ($fType == "application/x-zip-compressed") {
                         $newtype = ".zip";
                     }
-                    
                     $newfilepath = "doc//cv//" . $fn . "_" . $m . $newtype;
                     move_uploaded_file($cv["tmp_name"], $newfilepath);
 
                     
+                    $hashed_password = password_hash($ps, PASSWORD_DEFAULT);
 
-                    Database::iud("INSERT INTO `worker`(`email`,`fname`,`lname`,`password`,`mobile`,`file_path`,`regdate`,`gender_id`,`category_id`,`status_s_id`,`r_Like`) 
-                    VALUES ('" . $e . "','" . $fn . "','" . $ln . "','" . $ps . "','" . $m . "','" . $newfilepath . "','" . $d . "','" . $g . "','" . $catType . "','1','0')");
+                    Database::iud("INSERT INTO `worker`(`email`, `fname`, `lname`, `password`, `mobile`, `file_path`, `regdate`, `gender_id`, `category_id`, `status_s_id`, `r_Like`) 
+                    VALUES ('" . $e . "','" . $fn . "','" . $ln . "','" . $hashed_password . "','" . $m . "','" . $newfilepath . "','" . $d . "','" . $g . "','" . $catType . "','1','0')");
                     echo ("success");
                 }
             } else {
@@ -100,12 +95,15 @@ if (empty($fn)) {
         }
     }
 } else {
-    if ($un > 0 OR $wn>0) {
+    if ($un > 0 || $wn > 0) {
         echo ("This Email OR Mobile Number Already Exists.");
     } else {
-       
-        Database::iud("INSERT INTO `user`(`email`,`fname`,`lname`,`password`,`mobile`,`gender_id`,`regdate`,`status_s_id`) 
-        VALUES ('" . $e . "','" . $fn . "','" . $ln . "','" . $ps . "','" . $m . "','" . $g . "','" . $d . "','2')");
+        
+        $hashed_password = password_hash($ps, PASSWORD_DEFAULT);
+
+        Database::iud("INSERT INTO `user`(`email`, `fname`, `lname`, `password`, `mobile`, `gender_id`, `regdate`, `status_s_id`) 
+        VALUES ('" . $e . "','" . $fn . "','" . $ln . "','" . $hashed_password . "','" . $m . "','" . $g . "','" . $d . "','2')");
         echo ("success");
     }
 }
+?>

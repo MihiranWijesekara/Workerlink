@@ -40,6 +40,14 @@ if (empty($fn)) {
     echo ("Please Enter Your Password.");
 } else if (strlen($ps) < 5 || strlen($ps) > 20) {
     echo ("Password Lenth Must be been 5 - 20 Characters.");
+} else if(!preg_match('/[A-Z]/', $ps)){
+    echo ("Password Must Contain At Least One Uppercase Letter.");  
+}else if (!preg_match('/[a-z]/', $ps)) {
+        echo ("Password Must Contain At Least One Lowercase Letter.");
+}else if (!preg_match('/[0-9]/', $ps)) {
+            echo ("Password Must Contain At Least One Number.");
+}else if (!preg_match('/[\W_]/', $ps)) {
+                echo ("Password Must Contain At Least One Special Character.");
 } else if (empty($rps)) {
     echo ("Please Enter Retype Password.");
 } else if ($rps != $ps) {

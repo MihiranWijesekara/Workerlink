@@ -245,6 +245,8 @@ function updateProfile() {
     var pc = document.getElementById("pc");
     var pay = document.getElementById("pay");
     var disc = document.getElementById("dis");
+    var GIg_d = document.getElementById("GIg_d");
+    var gig_image = document.getElementById("gig_image");
 
     var r = new XMLHttpRequest();
 
@@ -261,6 +263,8 @@ function updateProfile() {
     f.append("pc", pc.value);
     f.append("pay", pay.value);
     f.append("dis", disc.value);
+    f.append("GIg_d", GIg_d.value);
+    f.append("gig_image", gig_image.files[0]);
 
 
     r.onreadystatechange = function () {

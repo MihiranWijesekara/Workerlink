@@ -7,6 +7,8 @@ $e = $_POST["e"];
 $p = $_POST["p"];
 $r = $_POST["r"];
 
+
+
 $wrs = Database::search("SELECT * FROM `worker` INNER JOIN `status` ON worker.status_s_id = status.s_id WHERE `email`='" . $e . "' AND `password`='" . $p . "' ");
 $urs = Database::search("SELECT * FROM `user` INNER JOIN `status` ON user.status_s_id = status.s_id WHERE `email`='" . $e . "' AND `password`='" . $p . "' ");
 $wn = $wrs->num_rows;

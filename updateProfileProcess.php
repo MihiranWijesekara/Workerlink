@@ -16,6 +16,7 @@ if (isset($_SESSION["u"])) {
     $pc = $_POST["pc"];
     $pay = $_POST["pay"];
     $disc = $_POST["dis"];
+    $GIg_d = $_POST["GIg_d"];
 
     if (empty($nic)) {
         echo ("Please Enter Your NIC Number.");
@@ -47,7 +48,10 @@ if (isset($_SESSION["u"])) {
         echo ("The service charge should be less than RS: 9999");
     } else if (empty($disc)) {
         echo ("Please Enter Your Description.");
-    } else {
+    } else if (empty($GIg_d)) {
+        echo ("Please Enter Your Gig Description .");
+    
+    } else  {
 
         if (isset($_FILES["pi"])) {
             $img = $_FILES["pi"];
@@ -89,6 +93,46 @@ if (isset($_SESSION["u"])) {
             }
         }
 
+       if (isset($_FILES["gig_image"])) {
+            $gig_img = $_FILES["gig_image"];
+            $gig_imgex = $gig_img["type"];
+    
+            $gig_allow_extensions = array("image/jpg", "image/jpeg", "image/png", "image/svg+xml");
+    
+            if (in_array($gig_imgex, $gig_allow_extensions)) {
+                if ($gig_img ["size"] > (1024 * 1024 * 2)) {
+                    echo ("Image maximum allowed file size is 2MB.");
+                } else {
+                    $gig_imgType;
+                    if ($gig_imgex == "image/jpg") {
+                        $gig_imgType = ".jpg";
+                    } else if ($gig_imgex == "image/jpeg") {
+                        $gig_imgType = ".jpeg";
+                    } else if ($gig_imgex == "image/png") {
+                        $gig_imgType = ".png";
+                    } else if ($gig_imgex == "image/svg+xml") {
+                        $gig_imgType = ".svg";
+                    } else if($gig_imgex == "image/avif"){
+                        $gig_imgType = ".avif";
+                    }
+    
+                    $gig_img_path = "doc//Gig_image//" . $nic . "_" . uniqid() . $gig_imgType;
+                    move_uploaded_file($gig_img["tmp_name"], $gig_img_path);
+    
+                    $wimgRs = Database::search("SELECT * FROM `woker_img` WHERE `worker_email`='" . $e . "' ");
+                    $winum = $wimgRs->num_rows;
+    
+                    if ($winum == 0) {
+                        Database::iud("INSERT INTO `woker_img`(`cover_img_path`) VALUES ('" . $gig_img_path . "')");
+                    } else {
+                        Database::iud("UPDATE `woker_img` SET `cover_img_path`='" . $gig_img_path . "' WHERE `worker_email`='" . $e . "'");
+                    }
+                }
+            } else {
+                echo ("Gig Image has unsupported extensions.");
+            }
+       }
+
         $waddRs = Database::search("SELECT * FROM `worker_address` WHERE `worker_email`='" . $e . "'");
         $wnum = $waddRs->num_rows;
 
@@ -105,10 +149,10 @@ if (isset($_SESSION["u"])) {
 
         if ($workerNum == 1) {
             Database::iud("UPDATE `worker` SET `nic`='" . $nic . "',`password`='" . $ps . "',`payment`='" . $pay . "',
-            `discription`='" . $disc . "' WHERE `email`='" . $e . "' ");
+            `discription`='" . $disc . "',`gig_d`='" . $GIg_d . "' WHERE `email`='" . $e . "' ");
         } else {
-            Database::iud("INSERT INTO `worker`(`nic`,`email`,`password`,`payment`,`discription`) VALUES 
-            ('" . $nic . "','" . $e . "','" . $ps . "','" . $pay . "','" . $disc . "')");
+            Database::iud("INSERT INTO `worker`(`nic`,`email`,`password`,`payment`,`discription`,`gig_d`) VALUES 
+            ('" . $nic . "','" . $e . "','" . $ps . "','" . $pay . "','" . $disc . "','" . $GIg_d . "')");
         }
 
         setcookie("email", "", -1);

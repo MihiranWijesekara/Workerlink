@@ -34,7 +34,7 @@ require "connection.php";
              INNER JOIN `woker_img` ON worker.email=woker_img.worker_email WHERE `email`='" . $email . "' ");
 
         $workerdata = $workerRs->fetch_assoc();
-        
+
         $add = Database::search("SELECT * FROM `worker` INNER JOIN `worker_address` ON worker.email=worker_address.worker_email 
         INNER JOIN `city` ON worker_address.city_city_id=city.city_id 
         INNER JOIN `district` ON city.district_district_id=district.district_id 
@@ -271,6 +271,29 @@ require "connection.php";
                             <?php
                             }
                             ?>
+                            <?php 
+                            if (empty($adData["gig_d"])) {
+                            ?>
+                            <div class="col-6 mb-4">
+                                <label class="form-label">Gig Discription</label>
+                                <input type="text" id="GIg_d" class="form-control" placeholder="Enter Your Gig Discription" />
+                            </div>
+                            <?php 
+                            } else {
+                                ?>
+                                  <div class="col-6 mb-4">
+                                    <label class="form-label">Gig Discription</label>
+                                    <input type="text" id="GIg_d" class="form-control" value="<?php echo ($adData["gig_d"]); ?>" />
+                                </div>
+
+                                <?php
+                            }
+                            ?>
+
+                            <div class="col-6 mb-4">
+                                <label class="form-label">Gig Image</label>
+                                <input type="file" id="gig_image" class="form-control" />
+                            </div>
                             <div class="col-6 mb-4">
                                 <?php
                                 $workerRs = Database::search("SELECT cate_name FROM `worker` INNER JOIN `category` ON worker.category_id=cate_id WHERE `email`='" . $email . "'");

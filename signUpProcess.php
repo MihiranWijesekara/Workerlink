@@ -88,6 +88,8 @@ if (empty($fn)) {
                     $newfilepath = "doc//cv//" . $fn . "_" . $m . $newtype;
                     move_uploaded_file($cv["tmp_name"], $newfilepath);
 
+                    
+
                     Database::iud("INSERT INTO `worker`(`email`,`fname`,`lname`,`password`,`mobile`,`file_path`,`regdate`,`gender_id`,`category_id`,`status_s_id`,`r_Like`) 
                     VALUES ('" . $e . "','" . $fn . "','" . $ln . "','" . $ps . "','" . $m . "','" . $newfilepath . "','" . $d . "','" . $g . "','" . $catType . "','1','0')");
                     echo ("success");
@@ -101,6 +103,7 @@ if (empty($fn)) {
     if ($un > 0 OR $wn>0) {
         echo ("This Email OR Mobile Number Already Exists.");
     } else {
+       
         Database::iud("INSERT INTO `user`(`email`,`fname`,`lname`,`password`,`mobile`,`gender_id`,`regdate`,`status_s_id`) 
         VALUES ('" . $e . "','" . $fn . "','" . $ln . "','" . $ps . "','" . $m . "','" . $g . "','" . $d . "','2')");
         echo ("success");

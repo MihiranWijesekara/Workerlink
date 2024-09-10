@@ -44,7 +44,6 @@ require "connection.php";
                               
                             ");
 
-
                             $WorkerNum = $WorkerRs->num_rows;
 
                             if ($WorkerNum == "0") {
@@ -69,11 +68,11 @@ require "connection.php";
 
                                 $selectWorkerRs = Database::search("SELECT * FROM `worker`
                                 INNER JOIN `category` ON worker.category_id = category.cate_id 
+                                INNER JOIN `woker_img` ON worker.email = woker_img.worker_email
                                  WHERE `cate_id`='" . $catid . "' 
                                  AND `status_s_id`='2' 
                                  AND `discription` IS NOT NULL 
                                  LIMIT " . $result_per_page . " OFFSET " . $page_results);
-
 
                                 $selectWorkerNum = $selectWorkerRs->num_rows;
 
@@ -92,15 +91,16 @@ require "connection.php";
                                     ?>
 
                                         <div class="card col-3 border rounded-3 border-dark-subtle">
-                                            <img src="img/001.jpg" class="card-img-top mt-2 border rounded-3" />
+                                            <!--   <img src="img/001.jpg" class="card-img-top mt-2 border rounded-3" /> -->
+                                          
+                                            <img src="<?php echo ($selectWorkerData["cover_img_path"]); ?>" class="card-img-top mt-2 border rounded-3" alt="No Load Profile Image" />
                                             <div class="card-body">
                                                 <h5 class="card-title text-center fw-bolder text-secondary-emphasis">
                                                     <?php echo $selectWorkerData['fname'] . " " . $selectWorkerData['lname']; ?>
                                                 </h5>
                                                 <p class="card-text my-4">
-                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit molestias eveniet
-                                                    consectetur tenetur commodi perferendis rerum, iusto eaque voluptate inventore,
-                                                    repudiandae cumque quis ad quae, at quo nesciunt laborum mollitia.
+
+                                                    <?php echo $selectWorkerData['gig_d']; ?>
                                                 </p>
                                                 <ul class="list-group list-group-flush">
                                                     <?php
@@ -174,14 +174,14 @@ require "connection.php";
                                                         <i style=" color: yellow;" class="bi bi-star-fill"></i>
                                                         <i class="bi bi-star"></i>
                                                     <?php
-                                                    } else if($workerLike > 80){
-                                                        ?>
+                                                    } else if ($workerLike > 80) {
+                                                    ?>
                                                         <i style="margin-left: 10px; color: yellow;" class="bi bi-star-fill"></i>
                                                         <i style=" color: yellow;" class="bi bi-star-fill"></i>
                                                         <i style=" color: yellow;" class="bi bi-star-fill"></i>
                                                         <i style=" color: yellow;" class="bi bi-star-fill"></i>
                                                         <i style=" color: yellow;" class="bi bi-star-fill"></i>
-                                                        <?php
+                                                    <?php
                                                     }
                                                     ?>
                                                 </div>

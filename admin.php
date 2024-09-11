@@ -42,7 +42,10 @@ if (isset($_SESSION["admin"])) {
                         </li>
                         <li class="nav-item me-2">
                             <a class="nav-link" href="workerAdmin.php"><i class="bi bi-person-workspace"></i> Workers</a>
-                        
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="dashboard.php"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                        </li>
                         <li class="nav-item me-2">
                             <a class="nav-link" onclick="adminLogout();" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a>
                         </li>

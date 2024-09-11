@@ -35,7 +35,6 @@ if (empty($cName )) {
     $bodyContent2 = '<h1 style="color:black;">Customer Email: ' . $cEmail . ' </h2>';
     $bodyContent3 = '<h1 style="color:black;">Customer Message: ' . $cMessage . ' </h3>';
 
-    // Concatenate the body contents
     $mail->Body = $bodyContent1 . $bodyContent2 . $bodyContent3;
 
     if (!$mail->send()) {

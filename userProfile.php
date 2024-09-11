@@ -121,17 +121,7 @@
                             <input type="text" id="email" class="form-control text-center text-danger-emphasis bg-danger-subtle border-danger" value="<?php echo ($userdata["email"]);  ?>" placeholder="mark@gmail.com" disabled />
                         </div>
 
-                        <div class="col-6 mb-4">
-                        <?php
-                                $workerRs = Database::search("SELECT password FROM `user` WHERE `email`='" . $email . "'");
-                                $userdata = $workerRs->fetch_assoc();
-                                ?>
-                            <label class="form-label">Password</label>
-                            <div class="input-group">
-                                <input type="password" id="ps" class="form-control" aria-describedby="psi" value="<?php echo ($userdata["password"]); ?>" placeholder="Enter Your Password" />
-                                <span class="input-group-text" id="psi" onclick="psview();"><i class="bi bi-eye-fill"></i></span>
-                            </div>
-                        </div>
+                       
                         <div class="col-6 mb-4">
                         <?php
                                 $workerRs = Database::search("SELECT mobile FROM `user` WHERE `email`='" . $email . "'");

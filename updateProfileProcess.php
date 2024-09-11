@@ -9,7 +9,6 @@ if (isset($_SESSION["u"])) {
     $e = $_SESSION["u"]["email"];
 
     $nic = $_POST["n"];
-    $ps = $_POST["p"];
     $a1 = $_POST["ad1"];
     $a2 = $_POST["ad2"];
     $ci = $_POST["c"];
@@ -22,10 +21,6 @@ if (isset($_SESSION["u"])) {
         echo ("Please Enter Your NIC Number.");
     } else if (strlen($nic) < 12) {
         echo ("Invalid Your NIC Number.");
-    } else if (empty($ps)) {
-        echo ("Please Enter Your Password.");
-    } else if (strlen($ps) < 5 || strlen($ps) > 20) {
-        echo ("Password Length Must be between 5 and 20 Characters.");
     } else if (empty($a1)) {
         echo ("Please Enter Your Address.");
     } else if (strlen($a1) > 50) {
@@ -148,11 +143,11 @@ if (isset($_SESSION["u"])) {
         $workerNum = $workerRs->num_rows;
 
         if ($workerNum == 1) {
-            Database::iud("UPDATE `worker` SET `nic`='" . $nic . "',`password`='" . $ps . "',`payment`='" . $pay . "',
+            Database::iud("UPDATE `worker` SET `nic`='" . $nic . "',`payment`='" . $pay . "',
             `discription`='" . $disc . "',`gig_d`='" . $GIg_d . "' WHERE `email`='" . $e . "' ");
         } else {
-            Database::iud("INSERT INTO `worker`(`nic`,`email`,`password`,`payment`,`discription`,`gig_d`) VALUES 
-            ('" . $nic . "','" . $e . "','" . $ps . "','" . $pay . "','" . $disc . "','" . $GIg_d . "')");
+            Database::iud("INSERT INTO `worker`(`nic`,`email`,`payment`,`discription`,`gig_d`) VALUES 
+            ('" . $nic . "','" . $e . "','" . $pay . "','" . $disc . "','" . $GIg_d . "')");
         }
 
         setcookie("email", "", -1);

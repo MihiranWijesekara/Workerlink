@@ -9,7 +9,7 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         * {
             padding: 0;
@@ -73,7 +73,7 @@
 </head>
 
 <body>
-    <div id="msg" class="d-none alert alert-danger"></div>
+    <div id="msg" class="d-none alert" role="alert"></div>
 
     <div class="container ">
         <div class="row row-cols-1 row-cols-md-4 g-4 card-row">
@@ -132,7 +132,7 @@
                         <textarea class="form-control" id="cMessage" rows="3"></textarea>
                     </div>
                     <div class="mb-3">
-                        <button class="btn btn-secondary" onclick="contactUs();">Send..</button> 
+                        <button class="btn btn-secondary" onclick="contactUs();">Send..</button>
                     </div>
                 </div>
 
@@ -152,8 +152,44 @@
         </div>
     </section>
 
-    <script src="bootstrap.bundle.js"></script>   
-     <script src="script.js"></script>
+    <!-- Success Message Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Message Sent</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Your message has been sent successfully!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Message Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    There was an error sending your message. Please try again.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="bootstrap.bundle.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -126,17 +126,7 @@ require "connection.php";
                                 <label class="form-label text-danger-emphasis">Email</label>
                                 <input type="text" class="form-control text-center text-danger-emphasis bg-danger-subtle border-danger" value="<?php echo ($workerdata["email"]); ?>" disabled />
                             </div>
-                            <div class="col-6 mb-4">
-                                <?php
-                                $workerRs = Database::search("SELECT password FROM `worker` WHERE `email`='" . $email . "'");
-                                $workerdata = $workerRs->fetch_assoc();
-                                ?>
-                                <label class="form-label">Password</label>
-                                <div class="input-group">
-                                    <input type="password" id="ps" class="form-control" aria-describedby="psi" value="<?php echo ($workerdata["password"]); ?>" />
-                                    <button class="btn btn-outline-secondary input-group-text" id="psi" onclick="psview();"><i class="bi bi-eye text-white"></i></button>
-                                </div>
-                            </div>
+                           
                             <div class="col-6 mb-4">
                                 <?php
                                 $workerRs = Database::search("SELECT mobile FROM `worker` WHERE `email`='" . $email . "'");

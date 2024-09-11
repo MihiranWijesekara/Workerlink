@@ -236,7 +236,6 @@ function updateProfile() {
 
     var pimg = document.getElementById("pimg");
     var nic = document.getElementById("nic");
-    var ps = document.getElementById("ps");
     var a1 = document.getElementById("line1");
     var a2 = document.getElementById("line2");
     var pro = document.getElementById("province");
@@ -254,7 +253,6 @@ function updateProfile() {
 
     f.append("pi", pimg.files[0]);
     f.append("n", nic.value);
-    f.append("p", ps.value);
     f.append("ad1", a1.value);
     f.append("ad2", a2.value);
     f.append("pr", pro.value);
@@ -284,8 +282,7 @@ function updateProfile() {
 
 function updateUserProfile() {
     var pimg = document.getElementById("pimg");
-    var nic = document.getElementById("nic");
-    var ps = document.getElementById("ps");
+    var nic = document.getElementById("nic"); 
     var a1 = document.getElementById("line1");
     var a2 = document.getElementById("line2");
     var pro = document.getElementById("province");
@@ -300,7 +297,6 @@ function updateUserProfile() {
 
     f.append("pi", pimg.files[0]);
     f.append("n", nic.value);
-    f.append("p", ps.value);
     f.append("ad1", a1.value);
     f.append("ad2", a2.value);
     f.append("pr", pro.value);
@@ -843,7 +839,6 @@ function userSave(email) {
     r.send();
 }
 
-
 function contactUs() {
     console.log("Function called");
     var Name = document.getElementById("cName");
@@ -863,11 +858,13 @@ function contactUs() {
 
     r.onreadystatechange = function () {
         if (r.readyState == 4 && r.status == 200) {
-            var t = r.responseText;
+            var t = r.responseText.trim();
             if (t == "success") {
-                window.location.reload();
+                var successModal = new bootstrap.Modal(document.getElementById('successModal'), {});
+                successModal.show();
             } else {
-
+                var errorModal = new bootstrap.Modal(document.getElementById('errorModal'), {});
+                errorModal.show();
             }
         }
     };
@@ -875,6 +872,7 @@ function contactUs() {
     r.open("POST", "contactUsProcess.php", true);
     r.send(f);
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const chatIcon = document.getElementById("chatIcon");

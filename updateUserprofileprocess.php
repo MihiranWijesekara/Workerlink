@@ -10,7 +10,7 @@ if (isset($_SESSION["u"])) {
     $e = $_SESSION["u"]["email"];
 
     $nic = $_POST["n"];
-    $ps = $_POST["p"];
+    
     $a1 = $_POST["ad1"];
     $a2 = $_POST["ad2"];
      $pr = $_POST["pr"];
@@ -22,10 +22,7 @@ if (isset($_SESSION["u"])) {
         echo ("Please Enter Your NIC Number.");
     }else if(strlen($nic)< 12) {
         echo ("Invalid Your NIC Number.");
-    } else if(empty($ps)){
-        echo ("Please Enter ypur password.");
-    }else if(strlen($ps)< 5 || strlen($ps) > 20 ) {
-        echo ("Password Lenth Must be been 5 - 20 Characters.");
+    
     }else if(empty($a1)){
         echo ("Please Enter your Address.");
     }else if(strlen($a1) > 50){
@@ -94,7 +91,7 @@ if (isset($_SESSION["u"])) {
         }
 
 
-        Database::iud("UPDATE `user` SET `nic`='" . $nic . "',`password`='" . $ps . "'  WHERE `email`='" . $e . "' ");
+        Database::iud("UPDATE `user` SET `nic`='" . $nic . "'  WHERE `email`='" . $e . "' ");
 
         setcookie("email", "", -1);
         setcookie("password", "", -1);
